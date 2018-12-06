@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import base from './base.css'
 import Container from '../components/container'
 import Navigation from '../components/navigation'
 
-class Template extends React.Component {
+class Template extends Component {
   render() {
     const { location, children } = this.props
     let header
