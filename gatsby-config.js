@@ -1,23 +1,28 @@
-let contentfulConfig
+let env = process.env.NODE_ENV || 'development'
 
-try {
-  // Load the Contentful config from the .contentful.json
-  contentfulConfig = require('./.contentful')
-} catch (_) {}
+// This adds dotenv (for storing environment variables) to gatsby
+require('dotenv').config({ path: `./.env.${env}` })
+
+// let contentfulConfig
+
+// try {
+//   // Load the Contentful config from the .contentful.json
+//   contentfulConfig = require('./.contentful')
+// } catch (_) {}
 
 // Overwrite the Contentful config with environment variables if they exist
-contentfulConfig = {
-  spaceId: process.env.CONTENTFUL_SPACE_ID || contentfulConfig.spaceId,
-  accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken,
-}
+// contentfulConfig = {
+//   spaceId: process.env.CONTENTFUL_SPACE_ID || contentfulConfig.spaceId,
+//   accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken,
+// }
 
-const { spaceId, accessToken } = contentfulConfig
+// const { spaceId, accessToken } = contentfulConfig
 
-if (!spaceId || !accessToken) {
-  throw new Error(
-    'Contentful spaceId and the delivery token need to be provided.'
-  )
-}
+// if (!spaceId || !accessToken) {
+//   throw new Error(
+//     'Contentful spaceId and the delivery token need to be provided.'
+//   )
+// }
 
 module.exports = {
   pathPrefix: '/gatsby-contentful-starter',
@@ -27,7 +32,10 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-source-contentful',
-      options: contentfulConfig,
-    }
+      options: {
+        spaceId: `${process.env.SPACE_ID}`,
+        accessToken: `${process.env.ACCESS_TOKEN}`,
+      },
+    },
   ],
 }
