@@ -1,0 +1,80 @@
+@import "variables";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+}
+
+body {
+  margin: 0;
+  font-family: $ff-primary;
+  font-size: $fs-base;
+  font-weight: $fw-base;
+  text-align: left;
+  background-color: $c-default;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none; // Remove the border on images inside links in IE 10-.
+}
+
+svg {
+  // Workaround for the SVG overflow bug in IE10/11 is still required.
+  // See https://github.com/twbs/bootstrap/issues/26878
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  font-family: inherit;
+}
+
+a {
+  background-color: transparent; // Remove the gray background on active links in IE 10.
+  -webkit-text-decoration-skip: objects; // Remove gaps in links underline in iOS 8+ and Safari 8+.
+}
+
+button {
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  color: inherit;
+}
+
+.style-alternate {
+  background-color: $c-alternate;
+  color: $c-default;
+
+  h1, h2, h3, h4, h5, p, a {
+    color: $c-default;
+  }
+}
+
+.style-default {
+  background-color: $c-default;
+  color: $c-alternate;
+  h1, h2, h3, h4, h5, p, a {
+    color: $c-alternate;
+  }
+}
+
+.vertical-divider {
+  margin: 30px 0;
+  border: 1px solid $c-alternate;
+  padding: 30px 0;
+  //&:before {
+  //  content: '';
+  //  border: 1px solid $c-alternate;
+  //  padding: 30px 0;
+  //}
+}
