@@ -19,7 +19,7 @@ class Container extends Component {
       <div>
         <ContainerDiv>
           <div className={`container style-${variant}`}>
-            <Header variant={variant}/>
+            <Header variant={variant} />
             {children}
           </div>
         </ContainerDiv>
