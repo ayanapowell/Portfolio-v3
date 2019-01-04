@@ -8,7 +8,7 @@ module.exports = {
   plugins: [
     'gatsby-transformer-remark',
     'gatsby-plugin-sharp',
-    "gatsby-plugin-react-helmet",
+    'gatsby-plugin-react-helmet',
     `gatsby-plugin-sass`,
     {
       resolve: 'gatsby-source-contentful',
@@ -21,20 +21,6 @@ module.exports = {
       resolve: `gatsby-plugin-emotion`,
       options: {
         // Accepts all options defined by `babel-plugin-emotion` plugin.
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-web-font-loader',
-      options: {
-        google: {
-          families: [
-            'Nanum Myeongjo',
-            'Quattrocento',
-            'Didact Gothic',
-            'sans-serif',
-            'serif',
-          ],
-        },
       },
     },
   ],

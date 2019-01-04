@@ -1,79 +1,56 @@
 import React, { Component } from 'react'
+import { TweenMax, Expo } from "gsap";
 import { Link } from 'gatsby-link'
-import TweenMax from 'gsap'
 import styled from '@emotion/styled'
-import selfImage from '../images/ayana-3.jpg'
-import Container from '../components/container'
+import WorkIcon from '../components/workIcon'
+import Div100vh from 'react-div-100vh'
+import Navigation from '../components/navigation'
+import '../styles/base.scss'
 
 const Home = styled.div`
-  height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  margin-top: -115px;
-
+  justify-content: center;
+  height: 100%;
+  padding: 0 60px;
+  position: relative;
   .homepage__intro {
-    text-align: center;
-    font-weight: light;
-    transition: 0.4s ease;
     opacity: 0;
-
     h1 {
-      font-weight: 100;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 4.72px;      
     }
-  }
-  .vertical-divider {
-    height: 100px;
-    margin: 30px 0;
-    span {
-      display: block;
-      border-left: 1px solid #e2e6e5;
+    p {
+      text-align: center;
+      width: 600px;
+      font-size: 20px;
     }
-  }
-  .homepage__work-button {
-    font-size: 24px;
-    cursor: pointer;
-    opacity: 0;
   }
 `
 
 class HomePage extends Component {
   componentDidMount() {
-    const tl = new TimelineMax()
-
-    tl
-      .to('.homepage__intro', 0.8, { opacity: 1 })
-      .to(
-        '.vertical-divider span',
-        0.35,
-        {
-          paddingBottom: '100px',
-        },
-        '+=0.8'
-      )
-      .to('.homepage__work-button', 0.6, { opacity: 1 }, '+=0.2')
+    TweenMax.to('.homepage__intro', 0.8, {
+      opacity: 1,
+      ease: Expo.easeInOut,
+      delay: 0.3
+    })
   }
   render() {
     return (
-      <div>
-        <Container variant="default">
-          <Home id="homepage" className="homepage">
-            <div className="homepage__intro">
-              <h1> Hi, I'm Ayana.</h1>
-              <h1>Web Developer,</h1>
-              <h1>fresh from Portland,</h1>
-              <h1>living in Brooklyn.</h1>
-            </div>
-            <div className="vertical-divider">
-              <span />
-            </div>
-            <button className="homepage__work-button" aria-label="View my work">
-              View my work
-            </button>
-          </Home>
-        </Container>
-      </div>
+      <Div100vh>
+        <Navigation/>
+        <Home id="homepage" className="homepage">
+          <div className="homepage__intro style-primary">
+            <h1>AYANA POWELL</h1>
+            <p>
+              Developer. Creative. Consultant.
+            </p>
+          </div>
+          <WorkIcon/>
+        </Home>
+      </Div100vh>
     )
   }
 }
