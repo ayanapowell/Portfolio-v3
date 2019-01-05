@@ -1,56 +1,68 @@
 import React, { Component } from 'react'
-import { TweenMax, Expo } from "gsap";
-import { Link } from 'gatsby-link'
 import styled from '@emotion/styled'
-import WorkIcon from '../components/workIcon'
-import Div100vh from 'react-div-100vh'
-import Navigation from '../components/navigation'
-import '../styles/base.scss'
+import Header from '../components/Header'
+import weightWatchersImage from '../images/weight-watchers.jpg'
+import FF from '../globals/emotionVars'
 
-const Home = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 0 60px;
-  position: relative;
-  .homepage__intro {
-    opacity: 0;
-    h1 {
-      text-align: center;
-      font-weight: 600;
-      letter-spacing: 4.72px;      
-    }
-    p {
-      text-align: center;
-      width: 600px;
-      font-size: 20px;
-    }
+const Hero = styled.div`
+  font-family: ${FF.primary};
+  background-color: black;
+  padding-bottom: 100px;
+
+  .bio {
+    padding: 0 180px;
+    margin-top: 100px;
+  }
+  .bio__title {
+    font-weight: 300;
+    font-size: 74px;
+    line-height: 84px;
+    letter-spacing: -1px;
+  }
+  .bio__subtitle {
+    font-size: 60px;
+    font-weight: 300;
+    margin-top: -20px;
+  }
+  .bio__description {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+    max-width: 550px;
   }
 `
 
+const WorkSection = styled.div`
+  color: black;
+`
+
 class HomePage extends Component {
-  componentDidMount() {
-    TweenMax.to('.homepage__intro', 0.8, {
-      opacity: 1,
-      ease: Expo.easeInOut,
-      delay: 0.3
-    })
-  }
+  componentDidMount() {}
   render() {
     return (
-      <Div100vh>
-        <Navigation/>
-        <Home id="homepage" className="homepage">
-          <div className="homepage__intro style-primary">
-            <h1>AYANA POWELL</h1>
-            <p>
-              Developer. Creative. Consultant.
-            </p>
+      <div>
+        <Hero>
+          <Header />
+          <div className="bio__wrapper">
+            <div className="bio">
+              <h1 className="bio__title">Ayana Powell</h1>
+              <h1 className="bio__subtitle">Web Developer</h1>
+              <p className="bio__description">
+                Strategi, teknologi og design er grundstenene i udviklingen af
+                stærke brugeroplevelser, der understøtter jeres behov og styrker
+                jeres forretning
+              </p>
+            </div>
           </div>
-          <WorkIcon/>
-        </Home>
-      </Div100vh>
+        </Hero>
+        <WorkSection>
+          <div className="work-section work-section--one">
+            <div className="work-section__image">
+              <img src={weightWatchersImage} />
+            </div>
+          </div>
+        </WorkSection>
+      </div>
     )
   }
 }

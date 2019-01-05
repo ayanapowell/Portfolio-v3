@@ -1,5 +1,6 @@
 @import 'variables';
-@import 'fonts';
+@import url('https://fonts.googleapis.com/css?family=Maitree:200,300,400,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900');
 
 *,
 *::before,
@@ -16,9 +17,9 @@ html {
 body {
   margin: 0;
   font-family: $ff-primary;
-  font-size: $fs-base;
+  color: white;
   text-align: left;
-  background-color: $c-default;
+  background-color: #f0f0f0;
 }
 
 img {
@@ -41,7 +42,6 @@ h5,
 h6,
 p {
   margin: 0;
-  font-family: inherit;
 }
 
 a {
@@ -57,41 +57,4 @@ button {
   background: transparent;
   font-family: inherit;
   color: inherit;
-}
-
-.style-secondary {
-  background-color: $c-alternate;
-  color: $c-default;
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  p,
-  a {
-    color: $c-default;
-  }
-}
-
-.style-primary {
-  background-color: $c-default;
-  color: $c-alternate;
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  p,
-  a {
-    color: $c-alternate;
-  }
-}
-
-.typog-primary {
-  color: $c-default;
-}
-
-.typog-secondary {
-  color: $c-alternate;
 }

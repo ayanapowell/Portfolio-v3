@@ -1,13 +1,4 @@
 import React, { Component } from 'react'
+import FF from '../globals/emotionVars'
 
-class AboutPage extends Component {
-  render() {
-    return (
-      <div style={{ background: '#fff' }}>
-        <h1>About page</h1>
-      </div>
-    )
-  }
-}
-
-export default AboutPage
+export default () => <div>Hello about page</div>
