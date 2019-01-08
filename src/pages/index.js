@@ -8,7 +8,7 @@ import FF from '../globals/emotionVars'
 const Hero = styled.div`
   font-family: ${FF.primary};
   background-color: black;
-  padding-bottom: 100px;
+  height: calc(100vh - 150px);
 
   .bio__wrapper {
     max-width: 70%;
@@ -53,6 +53,21 @@ const Hero = styled.div`
 
 const WorkSection = styled.div`
   color: black;
+  position: relative;
+  .work-section__image {
+    position: relative;
+    width: calc(100% - 180px);
+    margin-left: 180px;
+    margin-top: -150px;
+    img {
+      position: absolute;
+      right: 0;
+      width: 100%;
+      max-width: 100%;
+      height: 550px;
+      object-fit: cover;
+    }
+  }
 `
 
 class HomePage extends Component {
@@ -82,7 +97,7 @@ class HomePage extends Component {
         right: 0,
         ease: SlowMo.ease.config(0.2, 0.1, false),
       })
-      .to('.bio__description', 0.3, { opacity: 1, delay: 0.2 })
+      .to('.bio__description', 0.4, { opacity: 1, delay: 0.3 })
   }
   render() {
     return (
@@ -100,9 +115,9 @@ class HomePage extends Component {
                 <span>Web Developer</span>
               </h1>
               <p className="bio__description">
-                Strategi, teknologi og design er grundstenene i udviklingen af
-                stærke brugeroplevelser, der understøtter jeres behov og styrker
-                jeres forretning
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+                laoreet augue ut purus consectetur tincidunt. Aenean posuere
+                nibh et massa vulputate, in feugiat purus cursus.
               </p>
             </div>
           </div>
