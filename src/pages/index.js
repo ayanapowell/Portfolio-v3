@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from '@emotion/styled'
 import { SlowMo } from 'gsap'
 import Header from '../components/Header'
-import weightWatchersImage from '../images/weight-watchers.jpg'
+import WorkFeed from '../components/WorkFeed'
 import FF from '../globals/emotionVars'
 
 const Hero = styled.div`
@@ -22,11 +22,14 @@ const Hero = styled.div`
   }
   .bio__title {
     font-weight: 300;
-    font-size: 74px;
+    font-size: 70px;
     line-height: 84px;
     letter-spacing: -1px;
     position: relative;
     display: inline-block;
+    .overlay {
+      margin-top: 13px;
+    }
   }
   .bio__subtitle {
     font-size: 60px;
@@ -34,6 +37,9 @@ const Hero = styled.div`
     margin-top: -20px;
     position: relative;
     display: inline-block;
+    .overlay {
+      margin-top: 22px;
+    }
   }
   .bio__description {
     font-size: 18px;
@@ -48,57 +54,68 @@ const Hero = styled.div`
     bottom: 0;
     background: #f2f2f2;
     z-index: 1;
-  }
-`
-
-const WorkSection = styled.div`
-  color: black;
-  position: relative;
-  .work-section__image {
-    position: relative;
-    width: calc(100% - 180px);
-    margin-left: 180px;
-    margin-top: -150px;
-    img {
-      position: absolute;
-      right: 0;
-      width: 100%;
-      max-width: 100%;
-      height: 550px;
-      object-fit: cover;
-    }
+    height: 70px;
   }
 `
 
 class HomePage extends Component {
-  componentDidMount() {
+  state = {
+    initWpork: false,
+  }
+  animateIntro() {
     const tl = new TimelineMax()
 
+    const title = document.querySelector('.bio__title')
+    const subtitle = document.querySelector('.bio__subtitle')
+
     tl
-      .to('.bio__title .overlay', 0.2, {
+      .to(title.querySelector('.overlay'), 0.2, {
         ease: SlowMo.ease.config(0.2, 0.1, false),
         width: '100%',
         delay: 0.3,
       })
-      .to('.bio__subtitle .overlay', 0.2, {
+      .to(subtitle.querySelector('.overlay'), 0.2, {
         ease: SlowMo.ease.config(0.2, 0.1, false),
         width: '100%',
       })
-      .to('.bio__title span', 0.3, { opacity: 1 })
-      .to('.bio__subtitle span', 0.3, { opacity: 1 })
-      .to('.bio__title .overlay', 0.2, {
+      .to(title.querySelector('span'), 0.3, { opacity: 1 })
+      .to(subtitle.querySelector('span'), 0.3, { opacity: 1 })
+      .to(title.querySelector('.overlay'), 0.2, {
         width: 0,
         right: 0,
         delay: -0.1,
         ease: SlowMo.ease.config(0.2, 0.1, false),
       })
-      .to('.bio__subtitle .overlay', 0.2, {
+      .to(subtitle.querySelector('.overlay'), 0.2, {
         width: 0,
         right: 0,
         ease: SlowMo.ease.config(0.2, 0.1, false),
       })
+      .to(subtitle.querySelector('.overlay'), 0, {
+        left: 0,
+      })
+      .to('.overlay', 0, {
+        height: '60px',
+      })
+
+    tl
+      .to(title.querySelector('.overlay'), 0.3, {
+        width: '212px',
+        delay: 1,
+      })
+      .to(subtitle.querySelector('.overlay'), 0.3, {
+        width: '138px',
+        delay: '-0.3',
+      })
+      .add(() => {
+        this.setState({ initWork: true })
+      })
       .to('.bio__description', 0.4, { opacity: 1, delay: 0.3 })
   }
+  componentDidMount() {
+    this.animateIntro()
+  }
+
   render() {
     return (
       <div>
@@ -122,13 +139,11 @@ class HomePage extends Component {
             </div>
           </div>
         </Hero>
-        <WorkSection>
-          <div className="work-section work-section--one">
-            <div className="work-section__image">
-              <img src={weightWatchersImage} />
-            </div>
-          </div>
-        </WorkSection>
+        {this.state.initWork ? (
+          <WorkFeed initWork={this.state.initWork} />
+        ) : (
+          <div />
+        )}
       </div>
     )
   }
