@@ -52,7 +52,7 @@ const Hero = styled.div`
     position: absolute;
     top: 0;
     bottom: 0;
-    background: #f2f2f2;
+    background: #e2e6e5;
     z-index: 1;
     height: 70px;
   }
@@ -69,48 +69,49 @@ class HomePage extends Component {
     const subtitle = document.querySelector('.bio__subtitle')
 
     tl
-      .to(title.querySelector('.overlay'), 0.2, {
-        ease: SlowMo.ease.config(0.2, 0.1, false),
+      .to(title.querySelector('.overlay'), 0.3, {
+        ease: SlowMo.ease.config(0.1, 0.5, false),
         width: '100%',
         delay: 0.3,
       })
-      .to(subtitle.querySelector('.overlay'), 0.2, {
-        ease: SlowMo.ease.config(0.2, 0.1, false),
+      .to(subtitle.querySelector('.overlay'), 0.3, {
+        ease: SlowMo.ease.config(0.1, 0.7, false),
         width: '100%',
+        delay: '-0.2',
       })
-      .to(title.querySelector('span'), 0.3, { opacity: 1 })
-      .to(subtitle.querySelector('span'), 0.3, { opacity: 1 })
+      .to(title.querySelector('span'), 0.2, { opacity: 1 })
+      .to(subtitle.querySelector('span'), 0.2, { opacity: 1 })
       .to(title.querySelector('.overlay'), 0.2, {
         width: 0,
         right: 0,
-        delay: -0.1,
-        ease: SlowMo.ease.config(0.2, 0.1, false),
+        delay: -0.2,
+        // ease: SlowMo.ease.config(0.2, 0.1, false),
       })
       .to(subtitle.querySelector('.overlay'), 0.2, {
         width: 0,
         right: 0,
-        ease: SlowMo.ease.config(0.2, 0.1, false),
+        // ease: SlowMo.ease.config(0.2, 0.1, false),
       })
-      .to(subtitle.querySelector('.overlay'), 0, {
-        left: 0,
-      })
+      // .to(subtitle.querySelector('.overlay'), 0, {
+      //   left: 0,
+      // })
       .to('.overlay', 0, {
         height: '60px',
       })
 
     tl
-      .to(title.querySelector('.overlay'), 0.3, {
-        width: '212px',
-        delay: 1,
-      })
-      .to(subtitle.querySelector('.overlay'), 0.3, {
-        width: '138px',
-        delay: '-0.3',
-      })
+      // .to(title.querySelector('.overlay'), 0.3, {
+      //   width: '212px',
+      //   delay: 0.1,
+      // })
+      // .to(subtitle.querySelector('.overlay'), 0.3, {
+      //   width: '138px',
+      //   delay: '-0.3',
+      // })
       .add(() => {
         this.setState({ initWork: true })
       })
-      .to('.bio__description', 0.4, { opacity: 1, delay: 0.3 })
+      .to('.bio__description', 0.4, { opacity: 1, delay: 0.4 })
   }
   componentDidMount() {
     this.animateIntro()
