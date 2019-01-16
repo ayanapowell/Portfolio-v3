@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import FF from '../globals/emotionVars'
+import vars from '../utils/emotionVars'
 
 const NameEl = styled.h1`
   transform: rotate(-90deg);
-  font-family: ${FF.secondary};
+  font-family: ${vars.ff_secondary};
   font-size: 30px;
   font-weight: 400;
   letter-spacing: 2px;
