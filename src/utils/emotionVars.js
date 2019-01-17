@@ -4,6 +4,7 @@ export const vars = {
   black: '#000',
   white: '#fff',
   lightGrey: '#e2e6e5',
+  gutterLeft: '180px',
 }
 
 export default vars

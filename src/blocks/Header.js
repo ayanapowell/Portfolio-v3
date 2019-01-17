@@ -41,7 +41,7 @@ const NavEl = styled.nav`
     }
     .nav-list__list {
       display: flex;
-      padding: 0 180px;
+      padding: 0 ${vars.gutterLeft};
     }
   }
 

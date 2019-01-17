@@ -4,7 +4,7 @@ import vars from '../utils/emotionVars'
 
 const IntroEl = styled.div`
   font-family: ${vars.ff_primary};
-  padding: 0 180px;
+  padding: 0 ${vars.gutterLeft};
   margin-top: 100px;
   span {
     opacity: 0;

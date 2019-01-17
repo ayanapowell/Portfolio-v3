@@ -11,8 +11,8 @@ const WorkCarouselEl = styled.div`
 
   .work-carousel-image {
     position: relative;
-    width: calc(100% - 180px);
-    margin-left: 180px;
+    width: calc(100% - ${vars.gutterLeft});
+    margin-left: ${vars.gutterLeft};
     margin-top: -150px;
     opacity: 0;
     img {
@@ -70,7 +70,7 @@ class WorkCarousel extends Component {
       })
       .to(carouselWrapper.querySelector('.overlay'), 0.4, {
         css: {
-          width: 'calc(100% - 180px)',
+          width: `calc(100% - ${vars.gutterLeft})`,
           right: 0,
         },
         delay: 0.1,
