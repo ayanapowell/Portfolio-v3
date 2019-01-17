@@ -79,7 +79,7 @@ class Intro extends Component {
         width: 0,
         right: 0,
       })
-      .to('.intro-description', 0.4, { opacity: 1, delay: 0.4 })
+      .to('.intro-description', 0.3, { opacity: 1, delay: 0.4 })
   }
   render() {
     return (
