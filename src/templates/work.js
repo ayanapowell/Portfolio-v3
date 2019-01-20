@@ -1,40 +1,30 @@
-import React from 'react'
-import Helmet from 'react-helmet'
+import React, { Component } from 'react'
 import get from 'lodash/get'
+import PropTypes from 'prop-types'
 
-class Work extends React.Component {
+class Work extends Component {
   render() {
-    const work = get(this.props, 'data.contentfulWork')
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-
+    const { title } = this.props.data.contentfulWork
     return (
-      <div style={{ background: '#fff' }}>
-        <Helmet title={`${work.title} | ${siteTitle}`} />
-
-        <div className="wrapper">
-          <h1 className="section-headline">{work.title}</h1>
-          <p
-            style={{
-              display: 'block',
-            }}
-          />
-          <div
-            dangerouslySetInnerHTML={{
-              __html: work.body.childMarkdownRemark.html,
-            }}
-          />
-        </div>
+      <div>
+        <h1>{title}</h1>
       </div>
     )
   }
 }
 
+Work.propTypes = {
+  data: PropTypes.object.isRequired,
+}
+
 export default Work
 
 export const pageQuery = graphql`
-  query WorkSlug($slug: String!) {
+  query($slug: String!) {
     contentfulWork(slug: { eq: $slug }) {
       title
+      slug
+      id
       body {
         childMarkdownRemark {
           html

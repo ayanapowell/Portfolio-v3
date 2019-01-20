@@ -1,41 +1,38 @@
-const Promise = require('bluebird')
 const path = require('path')
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const work = path.resolve('./src/templates/work.js')
+    const workTemplate = path.resolve('src/templates/work.js')
     resolve(
-      graphql(
-        `
-          {
-            allContentfulWork {
-              edges {
-                node {
-                  title
-                  slug
-                }
+      graphql(`
+        {
+          allContentfulWork {
+            edges {
+              node {
+                id
+                title
+                slug
               }
             }
           }
-        `
-      ).then(result => {
+        }
+      `).then(result => {
         if (result.errors) {
-          console.log(result.errors)
           reject(result.errors)
         }
 
-        const works = result.data.allContentfulWork.edges
-        works.forEach((item, index) => {
+        result.data.allContentfulWork.edges.forEach(work => {
           createPage({
-            path: `/work/${item.node.slug}/`,
-            component: work,
+            path: work.node.slug,
+            component: workTemplate,
             context: {
-              slug: item.node.slug,
+              slug: work.node.slug,
             },
           })
         })
+        return
       })
     )
   })

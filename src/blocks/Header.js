@@ -57,10 +57,9 @@ class Header extends Component {
     navIsHidden: false,
   }
   componentDidMount() {
-    this.switchNav()
+    this.handleScroll()
   }
-  switchNav() {
-    const header = document.getElementById('header')
+  handleScroll() {
     window.onscroll = () => {
       const scrollPos = window.scrollY
 
