@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
-import FF from '../utils/emotionVars'
+import React from 'react'
 
 export default () => <div>Hello about page</div>

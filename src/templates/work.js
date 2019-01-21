@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import get from 'lodash/get'
 import PropTypes from 'prop-types'
 
 class Work extends Component {
@@ -25,6 +24,8 @@ export const pageQuery = graphql`
       title
       slug
       id
+      projectUrl
+      description
       body {
         childMarkdownRemark {
           html

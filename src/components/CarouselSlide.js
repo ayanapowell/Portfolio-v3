@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 
 const CarouselSlideEl = styled.div`
@@ -13,18 +14,21 @@ const CarouselSlideEl = styled.div`
 class CarouselSlide extends Component {
   imageRef = React.createRef()
   render() {
-    const { imageSrc, title, description, active } = this.props
-    return (
-      <div className={`carousel-item ${active ? 'active' : ''}`}>
-        <CarouselSlideEl>
-          <img ref={this.imageRef} src={imageSrc} />
-          <div className="carousel-caption d-none d-md-block">
-            <h5>{title}</h5>
-            <p dangerouslySetInnerHTML={{ __html: description }} />
-          </div>
-        </CarouselSlideEl>
-      </div>
-    )
+    const { imageSrc, title, active, slug } = this.props
+    if (imageSrc) {
+      return (
+        <div className={`carousel-item ${active ? 'active' : ''}`}>
+          <CarouselSlideEl>
+            <img ref={this.imageRef} src={imageSrc} />
+            <div className="carousel-caption d-none d-md-block">
+              <Link to={`/${slug}`}>
+                <h5>{title}</h5>
+              </Link>
+            </div>
+          </CarouselSlideEl>
+        </div>
+      )
+    }
   }
 }
 

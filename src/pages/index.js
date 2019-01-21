@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
-import get from 'lodash/get'
 import styled from '@emotion/styled'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
@@ -46,9 +45,9 @@ export const pageQuery = graphql`
           title
           slug
           id
-          body {
-            childMarkdownRemark {
-              html
+          mainImage {
+            file {
+              url
             }
           }
         }

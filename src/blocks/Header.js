@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 import { TweenMax } from 'gsap'
 import vars from '../utils/emotionVars'
@@ -32,17 +33,19 @@ const NavEl = styled.nav`
     transform: scale(0, 0);
     opacity: 0;
   }
-  &.nav-list--default {
-    .nav-list__item {
-      padding: 0 35px;
-      &:first-of-type {
-        padding-left: 0;
-      }
+
+  .nav-list__item {
+    padding: 0 35px;
+    &:first-of-type {
+      padding-left: 0;
     }
-    .nav-list__list {
-      display: flex;
-      padding: 0 ${vars.gutterLeft};
+    &:hover {
+      color: ${vars.white};
     }
+  }
+  .nav-list__list {
+    display: flex;
+    padding: 0 ${vars.gutterLeft};
   }
 
   &.nav-list--alt {
@@ -98,18 +101,15 @@ class Header extends Component {
             <div className="nav-list__menu-icon" />
             <div className="nav-list__inner">
               <div className="nav-list__list">
-                <div className="nav-list__item">
-                  <p>Work</p>
-                </div>
-                <div className="nav-list__item">
+                <Link to="/about" className="nav-list__item">
                   <p>About</p>
-                </div>
-                <div className="nav-list__item">
+                </Link>
+                <Link to="/contact" className="nav-list__item">
                   <p>Contact</p>
-                </div>
-                <div className="nav-list__item">
+                </Link>
+                <Link to="/photography" className="nav-list__item">
                   <p>Photography</p>
-                </div>
+                </Link>
               </div>
             </div>
           </NavEl>
