@@ -1,10 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import vars from '../utils/emotionVars'
-import wwImage from '../images/weight-watchers.jpg'
-import northwellImage from '../images/northwell.jpg'
-import thewellImage from '../images/thewell.jpg'
-import p2Image from '../images/phase2.jpg'
 import CarouselSlide from '../components/CarouselSlide'
 
 const CarouselEl = styled.div`
