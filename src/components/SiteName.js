@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import vars from '../utils/emotionVars'
+import React from 'react';
+import styled from '@emotion/styled';
+import vars from '../utils/emotionVars';
 
 const NameEl = styled.h1`
   transform: rotate(-90deg);
@@ -11,8 +11,18 @@ const NameEl = styled.h1`
   margin-top: 95px;
   margin-left: 30px;
   position: absolute;
-`
+  cursor: pointer;
+`;
 
-const SiteName = () => <NameEl className="site-name">AYANA</NameEl>
+const SiteName = props => (
+  <NameEl
+    className="site-name"
+    onClick={() => {
+      props.onNavSelection('home');
+    }}
+  >
+    AYANA
+  </NameEl>
+);
 
-export default SiteName
+export default SiteName;
