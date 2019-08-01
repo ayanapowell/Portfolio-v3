@@ -1,38 +1,46 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.bundle.min'
 import vars from '../utils/emotionVars'
-import Header from '../blocks/Header'
-import WorkWrapper from '../components/WorkWrapper'
+import Navigation from '../components/Navigation'
 import Intro from '../components/Intro'
-import Carousel from '../blocks/Carousel'
+import SiteName from '../components/SiteName'
+import { Switch, Route } from 'react-router-dom'
+import 'bootstrap/scss/bootstrap-grid.scss'
 
-const Hero = styled.div`
+const HeroEl = styled.div`
   font-family: ${vars.ff_primary};
-  background-color: ${vars.black};
-  height: calc(100vh - 150px);
-
-  .hero-intro-wrapper {
-    max-width: 70%;
-  }
+  background-color: #fff;
+  height: 100vh;
+  overflow: hidden;
 `
 
-const IndexPage = ({ data }) => {
-  return (
-    <div>
-      <Hero>
-        <Header />
-        <div className="hero-intro-wrapper">
-          <Intro />
-        </div>
-      </Hero>
-      <WorkWrapper>
-        <Carousel slides={data.allContentfulWork.edges} />
-      </WorkWrapper>
-    </div>
-  )
+class IndexPage extends React.Component {
+  render() {
+    return (
+      <div>
+        <HeroEl>
+          <SiteName />
+          <div className="container">
+            <div className="row">
+              <div className="offset-sm-1">
+                <Navigation />
+              </div>
+            </div>
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="offset-sm-1">
+                <div>
+                  <Intro />
+                </div>
+              </div>
+            </div>
+          </div>
+        </HeroEl>
+      </div>
+    )
+  }
 }
 
 export default IndexPage

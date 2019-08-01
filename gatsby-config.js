@@ -12,7 +12,14 @@ module.exports = {
     'gatsby-transformer-remark',
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
-    `gatsby-plugin-sass`,
+    {
+      resolve: 'gatsby-plugin-sass',
+      useResolveUrlLoader: {
+        options: {
+          sourceMap: true, //default is false
+        },
+      },
+    },
     {
       resolve: 'gatsby-source-contentful',
       options: {

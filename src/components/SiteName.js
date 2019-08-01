@@ -8,7 +8,8 @@ const NameEl = styled.h1`
   font-size: 30px;
   font-weight: 400;
   letter-spacing: 2px;
-  margin-top: 40px;
+  margin-top: 95px;
+  margin-left: 30px;
   position: absolute;
 `
 

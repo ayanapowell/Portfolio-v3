@@ -1,41 +1,46 @@
 import React, { Component } from 'react'
 import styled from '@emotion/styled'
 import vars from '../utils/emotionVars'
+import { TweenMax } from 'gsap'
 
 const IntroEl = styled.div`
   font-family: ${vars.ff_primary};
-  padding: 0 ${vars.gutterLeft};
   margin-top: 100px;
   span {
     opacity: 0;
   }
-  .intro-title {
+  .intro__title,
+  .intro__subtitle {
     font-weight: 300;
-    font-size: 70px;
-    line-height: 84px;
-    letter-spacing: -1px;
     position: relative;
-    display: inline-block;
+  }
+  .intro__title {
+    font-size: 70px;
+    line-height: 126px;
     .overlay {
       margin-top: 13px;
     }
   }
-  .intro-subtitle {
+
+  .intro__subtitle {
     font-size: 60px;
-    font-weight: 300;
     margin-top: -20px;
-    position: relative;
-    display: inline-block;
     .overlay {
       margin-top: 22px;
     }
   }
-  .intro-description {
-    font-size: 18px;
+  .intro__description {
+    font-size: 30px;
+    line-height: 1.4;
     font-weight: 300;
-    letter-spacing: 0.2px;
-    max-width: 550px;
+    margin-top: 15px;
     opacity: 0;
+    button {
+      font-size: 25px;
+      font-weight: 300;
+      padding: 0;
+      margin-top: 50px;
+    }
   }
   .overlay {
     position: absolute;
@@ -43,7 +48,7 @@ const IntroEl = styled.div`
     bottom: 0;
     background: ${vars.lightGrey};
     z-index: 1;
-    height: 70px;
+    height: 90px;
   }
 `
 
@@ -54,8 +59,8 @@ class Intro extends Component {
   animateIntro() {
     const tl = new TimelineMax()
 
-    const title = document.querySelector('.intro-title')
-    const subtitle = document.querySelector('.intro-subtitle')
+    const title = document.querySelector('.intro__title')
+    const subtitle = document.querySelector('.intro__subtitle')
 
     tl
       .to(title.querySelector('.overlay'), 0.3, {
@@ -79,25 +84,29 @@ class Intro extends Component {
         width: 0,
         right: 0,
       })
-      .to('.intro-description', 0.3, { opacity: 1, delay: 0.4 })
+      .to('.intro__description', 0.3, { opacity: 1, delay: 0.4 })
   }
   render() {
     return (
-      <div>
-        <IntroEl id="intro" className="intro">
-          <h1 className="intro-title">
-            <div className="overlay" />
-            <span>Ayana Powell</span>
-          </h1>
-          <h1 className="intro-subtitle">
-            <div className="overlay" />
-            <span>Web Developer</span>
-          </h1>
-          <p className="intro-description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            laoreet augue ut purus consectetur tincidunt. Aenean posuere nibh et
-            massa vulputate, in feugiat purus cursus.
-          </p>
+      <div className="container">
+        <IntroEl id="intro" className="intro row">
+          <div className="col-sm-9 px-0">
+            <h1 className="intro__title">
+              <div className="overlay" />
+              <span>Ayana Powell</span>
+            </h1>
+            <h1 className="intro__subtitle">
+              <div className="overlay" />
+              <span>Web Developer</span>
+            </h1>
+            <p className="intro__description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              <div>
+                <button>View my work</button>
+              </div>
+            </p>
+          </div>
         </IntroEl>
       </div>
     )
