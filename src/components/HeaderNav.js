@@ -1,15 +1,15 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import styled from '@emotion/styled'
-import vars from '../utils/emotionVars'
-import '../styles/base.scss'
+import React from 'react';
+import { Link } from 'gatsby';
+import styled from '@emotion/styled';
+import vars from '../utils/emotionVars';
+import '../styles/base.scss';
 
-const NavigationWrapperEl = styled.div`
+const HeaderNavEl = styled.div`
   display: flex;
   justify-content: space-between;
   padding-top: 58px;
   position: relative;
-`
+`;
 
 const NavEl = styled.nav`
   display: flex;
@@ -26,11 +26,9 @@ const NavEl = styled.nav`
 
   .nav-list__item {
     padding-right: 52px;
+    cursor: pointer;
     &:last-of-type {
       padding-right: 0;
-    }
-    &:hover {
-      color: ${vars.white};
     }
     > p {
       font-size: 18px;
@@ -47,30 +45,38 @@ const NavEl = styled.nav`
       display: none;
     }
   }
-`
+`;
 
-function Navigation() {
+function HeaderNav(props) {
+  const navItems = [
+    { title: 'Work', id: 'nav--work', value: 'work' },
+    { title: 'Contact', id: 'nav--contact', value: 'contact' },
+    { title: 'About', id: 'nav--about', value: 'about' },
+  ];
   return (
     <div className="navigation">
-      <NavigationWrapperEl>
+      <HeaderNavEl>
         <NavEl className="nav-list">
           <div className="nav-list__menu-icon" />
           <div className="nav-list__inner">
             <div className="nav-list__list">
-              <span className="nav-list__item">
-                <p>Work</p>
-              </span>
-              <span className="nav-list__item">
-                <p>Contact</p>
-              </span>
-              <span className="nav-list__item">
-                <p>About</p>
-              </span>
+              {navItems.map(item => (
+                <span
+                  className="nav-list__item"
+                  id={item.id}
+                  key={item.id}
+                  onClick={() => {
+                    props.onNavSelection(item.value);
+                  }}
+                >
+                  <p>{item.title}</p>
+                </span>
+              ))}
             </div>
           </div>
         </NavEl>
-      </NavigationWrapperEl>
+      </HeaderNavEl>
     </div>
-  )
+  );
 }
-export default Navigation
+export default HeaderNav;

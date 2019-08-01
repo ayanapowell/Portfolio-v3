@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import styled from '@emotion/styled'
-import vars from '../utils/emotionVars'
-import { TweenMax } from 'gsap'
+import React, { Component } from 'react';
+import styled from '@emotion/styled';
+import vars from '../utils/emotionVars';
+import { TweenMax } from 'gsap';
 
 const IntroEl = styled.div`
   font-family: ${vars.ff_primary};
@@ -50,17 +50,17 @@ const IntroEl = styled.div`
     z-index: 1;
     height: 90px;
   }
-`
+`;
 
 class Intro extends Component {
   componentDidMount() {
-    this.animateIntro()
+    this.animateIntro();
   }
   animateIntro() {
-    const tl = new TimelineMax()
+    const tl = new TimelineMax();
 
-    const title = document.querySelector('.intro__title')
-    const subtitle = document.querySelector('.intro__subtitle')
+    const title = document.querySelector('.intro__title');
+    const subtitle = document.querySelector('.intro__subtitle');
 
     tl
       .to(title.querySelector('.overlay'), 0.3, {
@@ -84,7 +84,7 @@ class Intro extends Component {
         width: 0,
         right: 0,
       })
-      .to('.intro__description', 0.3, { opacity: 1, delay: 0.4 })
+      .to('.intro__description', 0.3, { opacity: 1, delay: 0.4 });
   }
   render() {
     return (
@@ -102,15 +102,13 @@ class Intro extends Component {
             <p className="intro__description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              <div>
-                <button>View my work</button>
-              </div>
+              <button>View my work</button>
             </p>
           </div>
         </IntroEl>
       </div>
-    )
+    );
   }
 }
 
-export default Intro
+export default Intro;
