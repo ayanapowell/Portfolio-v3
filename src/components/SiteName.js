@@ -12,6 +12,7 @@ const NameEl = styled.h1`
   margin-left: 30px;
   position: absolute;
   cursor: pointer;
+  z-index: 999;
 `;
 
 const SiteName = props => (
