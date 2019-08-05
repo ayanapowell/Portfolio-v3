@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-class Work extends Component {
+class Project extends Component {
   render() {
-    const { title } = this.props.data.contentfulWork
+    const { title } = this.props.data.contentfulWork;
     return (
       <div>
         <h1>{title}</h1>
       </div>
-    )
+    );
   }
 }
 
-Work.propTypes = {
+Project.propTypes = {
   data: PropTypes.object.isRequired,
-}
+};
 
-export default Work
+export default Project;
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -33,4 +33,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

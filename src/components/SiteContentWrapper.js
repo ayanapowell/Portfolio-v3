@@ -1,12 +1,11 @@
 import React from 'react';
 import Intro from './Intro';
-import WorkNavigation from './WorkNavigation';
+import ProjectNavigation from './ProjectNavigation';
 
 function SiteContentWrapper(props) {
   let visibleContent;
-
   if (props.activeItem === 'work') {
-    visibleContent = <WorkNavigation />;
+    visibleContent = <ProjectNavigation allProjects={props.allProjects} />;
   } else if (props.activeItem === 'contact') {
     visibleContent = 'Contact page!';
   } else if (props.activeItem === 'about') {

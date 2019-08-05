@@ -1,10 +1,10 @@
-const path = require('path')
+const path = require('path');
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
-    const workTemplate = path.resolve('src/templates/work.js')
+    const projectTemplate = path.resolve('src/templates/Project.js');
     resolve(
       graphql(`
         {
@@ -20,20 +20,20 @@ exports.createPages = ({ graphql, actions }) => {
         }
       `).then(result => {
         if (result.errors) {
-          reject(result.errors)
+          reject(result.errors);
         }
 
-        result.data.allContentfulWork.edges.forEach(work => {
+        result.data.allContentfulWork.edges.forEach(project => {
           createPage({
-            path: work.node.slug,
-            component: workTemplate,
+            path: `projects/${project.node.slug}`,
+            component: projectTemplate,
             context: {
-              slug: work.node.slug,
+              slug: project.node.slug,
             },
-          })
-        })
-        return
+          });
+        });
+        return;
       })
-    )
-  })
-}
+    );
+  });
+};
