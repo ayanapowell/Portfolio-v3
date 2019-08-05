@@ -24,16 +24,21 @@ const NavEl = styled.nav`
     opacity: 0;
   }
 
-  .nav-list__item {
+  .nav-list__link {
     padding-right: 52px;
     cursor: pointer;
     &:last-of-type {
       padding-right: 0;
     }
-    > p {
+    > span {
       font-size: 18px;
       font-family: ${vars.ff_secondary};
       font-weight: 400;
+    }
+    &:hover {
+      span {
+        border-bottom: 3px solid pink;
+      }
     }
   }
   .nav-list__list {
@@ -61,16 +66,17 @@ function HeaderNav(props) {
           <div className="nav-list__inner">
             <div className="nav-list__list">
               {navItems.map(item => (
-                <span
-                  className="nav-list__item"
+                <Link
+                  to="/"
+                  className="nav-list__link"
                   id={item.id}
                   key={item.id}
                   onClick={() => {
                     props.onNavSelection(item.value);
                   }}
                 >
-                  <p>{item.title}</p>
-                </span>
+                  <span>{item.title}</span>
+                </Link>
               ))}
             </div>
           </div>

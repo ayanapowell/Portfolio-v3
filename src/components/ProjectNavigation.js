@@ -30,10 +30,15 @@ const ProjectNavEl = styled.div`
       font-family: ${vars.ff_secondary};
       font-weight: 400;
       font-size: 30px;
-      padding-bottom: 45px;
+      margin-bottom: 45px;
       display: inline-block;
       &:last-of-type {
-        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+      &:hover {
+        span {
+          border-bottom: 3px solid pink;
+        }
       }
     }
     &__right {
@@ -92,7 +97,7 @@ class ProjectNavigation extends React.Component {
                       onMouseEnter={() => this.handleFocusedItem(e)}
                       onMouseLeave={() => this.handleFocusedItem(false)}
                     >
-                      {e.node.title}
+                      <span>{e.node.title}</span>
                     </Link>
                   ))}
                 </div>
