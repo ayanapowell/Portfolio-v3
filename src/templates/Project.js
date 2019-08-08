@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 class Project extends Component {
   render() {
     const { title } = this.props.data.contentfulWork;
-    return (
-      <div>
-        <h1>{title}</h1>
-      </div>
-    );
+    return <div>{title}</div>;
   }
 }
 
