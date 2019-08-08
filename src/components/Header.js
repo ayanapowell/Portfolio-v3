@@ -44,7 +44,7 @@ const LogoEl = styled.div`
   z-index: 999;
 `;
 
-const Header = () => {
+const Header = props => {
   const navItems = [
     { title: 'Work', id: 'nav--work', value: 'work' },
     { title: 'Contact', id: 'nav--contact', value: 'contact' },
@@ -52,18 +52,27 @@ const Header = () => {
   ];
   return (
     <div>
-      <LogoEl className="header__logo">AYANA</LogoEl>
+      <LogoEl
+        className="header__logo"
+        onClick={() => {
+          props.onSettingActiveComponent('home');
+        }}
+      >
+        AYANA
+      </LogoEl>
       <Container>
         <HeaderEl>
           <ul className="header__nav-list">
             {navItems.map(item => (
-              <li>
+              <li key={item.id}>
                 <Link
                   to="/"
                   className="header__nav-link"
                   id={item.id}
-                  key={item.id}
                   data-value={item.value}
+                  onClick={() => {
+                    props.onSettingActiveComponent(item.value);
+                  }}
                 >
                   <span>{item.title}</span>
                 </Link>
