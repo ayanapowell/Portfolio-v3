@@ -3,12 +3,14 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import vars from '../utils/emotionVars';
 import '../styles/variables.scss';
+import Container from './Container';
 
 const HeaderEl = styled.div`
   position: relative;
   padding-top: 45px;
   .header__nav-list {
     display: flex;
+    padding: 0;
   }
   .header__nav-link {
     margin-right: 52px;
@@ -42,7 +44,7 @@ const LogoEl = styled.div`
   z-index: 999;
 `;
 
-function Header() {
+const Header = () => {
   const navItems = [
     { title: 'Work', id: 'nav--work', value: 'work' },
     { title: 'Contact', id: 'nav--contact', value: 'contact' },
@@ -51,29 +53,27 @@ function Header() {
   return (
     <div>
       <LogoEl className="header__logo">AYANA</LogoEl>
-      <div className="container">
-        <HeaderEl className="row">
-          <div className="offset-sm-1 header__nav">
-            <ul className="header__nav-list">
-              {navItems.map(item => (
-                <li>
-                  <Link
-                    to="/"
-                    className="header__nav-link"
-                    id={item.id}
-                    key={item.id}
-                    data-value={item.value}
-                  >
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+      <Container>
+        <HeaderEl>
+          <ul className="header__nav-list">
+            {navItems.map(item => (
+              <li>
+                <Link
+                  to="/"
+                  className="header__nav-link"
+                  id={item.id}
+                  key={item.id}
+                  data-value={item.value}
+                >
+                  <span>{item.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </HeaderEl>
-      </div>
+      </Container>
     </div>
   );
-}
+};
 
 export default Header;

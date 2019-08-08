@@ -5,6 +5,7 @@ import { graphql } from 'gatsby';
 import '../styles/base.scss';
 import 'bootstrap/scss/bootstrap-grid.scss';
 import SiteWrapper from '../components/SiteWrapper';
+import Intro from '../components/Intro';
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -16,7 +17,9 @@ class IndexPage extends React.Component {
   render() {
     return (
       <div>
-        <SiteWrapper />
+        <SiteWrapper>
+          <Intro />
+        </SiteWrapper>
       </div>
     );
   }
