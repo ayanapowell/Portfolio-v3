@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import vars from '../utils/emotionVars';
 import Container from './Container';
+import Div100vh from 'react-div-100vh';
 
 const IntroEl = styled.div`
   font-family: ${vars.ff_primary};

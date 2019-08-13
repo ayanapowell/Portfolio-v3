@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import vars from '../utils/emotionVars';
 import Container from './Container';
 import defaultImage from '../images/colored-paper.jpg';
+import SiteWrapper from './SiteWrapper';
 
 const ProjectNavEl = styled.div`
   .project-nav {

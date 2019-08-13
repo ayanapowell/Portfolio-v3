@@ -5,7 +5,7 @@ import Header from './Header';
 const SiteWrapper = props => {
   return (
     <Div100vh>
-      <Header onSettingActiveComponent={props.onSettingActiveComponent} />
+      {/* <Header onSettingActiveComponent={props.onSettingActiveComponent} /> */}
       {props.children}
     </Div100vh>
   );

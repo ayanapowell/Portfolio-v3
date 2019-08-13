@@ -1,7 +1,7 @@
-let env = process.env.NODE_ENV || 'development'
+let env = process.env.NODE_ENV || 'development';
 
 // This adds dotenv (for storing environment variables) to gatsby
-require('dotenv').config({ path: `./.env.${env}` })
+require('dotenv').config({ path: `./.env.${env}` });
 
 module.exports = {
   siteMetadata: {
@@ -12,6 +12,12 @@ module.exports = {
     'gatsby-transformer-remark',
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/Layout.js`),
+      },
+    },
     {
       resolve: 'gatsby-plugin-sass',
       useResolveUrlLoader: {
@@ -34,4 +40,4 @@ module.exports = {
       },
     },
   ],
-}
+};

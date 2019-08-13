@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Link } from 'gatsby';
+import { Link, StaticQuery } from 'gatsby';
 import vars from '../utils/emotionVars';
 import '../styles/variables.scss';
 import Container from './Container';
+import ProjectNav from './ProjectNav';
+import Project from '../templates/Project';
 
 const HeaderEl = styled.div`
   position: relative;
@@ -44,7 +46,7 @@ const LogoEl = styled.div`
   z-index: 999;
 `;
 
-const Header = props => {
+const Header = ({ data }, props) => {
   const navItems = [
     { title: 'Work', id: 'nav--work', value: 'work' },
     { title: 'Contact', id: 'nav--contact', value: 'contact' },
@@ -81,8 +83,50 @@ const Header = props => {
           </ul>
         </HeaderEl>
       </Container>
+      <StaticQuery
+        query={graphql`
+          query {
+            allContentfulWork(filter: { node_locale: { eq: "en-US" } }) {
+              edges {
+                node {
+                  title
+                  slug
+                  id
+                  mainImage {
+                    file {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `}
+        render={data => (
+          <ProjectNav allProjects={data.allContentfulWork.edges} />
+        )}
+      />
     </div>
   );
 };
 
 export default Header;
+
+export const pageQuery = graphql`
+  query {
+    allContentfulWork(filter: { node_locale: { eq: "en-US" } }) {
+      edges {
+        node {
+          title
+          slug
+          id
+          mainImage {
+            file {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+`;
