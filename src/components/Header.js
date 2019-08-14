@@ -16,13 +16,11 @@ const HeaderEl = styled.div`
   .header__nav-link {
     margin-right: 52px;
     cursor: pointer;
+    font-size: 22px;
+    font-family: ${vars.ff_secondary};
+    font-weight: 400;
     &:last-of-type {
       padding-right: 0;
-    }
-    > span {
-      font-size: 18px;
-      font-family: ${vars.ff_secondary};
-      font-weight: 400;
     }
     &:hover {
       span {
@@ -34,15 +32,18 @@ const HeaderEl = styled.div`
 
 const LogoEl = styled.div`
   transform: rotate(-90deg);
-  font-family: ${vars.ff_secondary};
-  font-size: 30px;
-  font-weight: 400;
-  letter-spacing: 2px;
-  margin-top: 95px;
+  margin-top: 100px;
   margin-left: 30px;
   position: absolute;
   cursor: pointer;
   z-index: 999;
+
+  a {
+    font-family: ${vars.ff_secondary};
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: 2px;
+  }
 `;
 
 class Header extends React.Component {
