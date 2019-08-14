@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
-import { Link } from 'gatsby';
+import { Link, StaticQuery } from 'gatsby';
 import vars from '../utils/emotionVars';
 import Container from './Container';
 import defaultImage from '../images/colored-paper.jpg';
@@ -70,23 +70,46 @@ class ProjectNav extends Component {
       imageToDisplay = <img src={defaultImage} />;
     }
     return (
-      <div className="column">
+      <div className="">
         <ProjectNavEl className="project-nav">
-          <Container>
-            <div className="project-nav__nav-list">
-              {this.props.allProjects.map(e => (
-                <Link
-                  to={`project/${e.node.slug}`}
-                  key={e.node.id}
-                  className="project-nav__link"
-                  onMouseEnter={() => this.handleFocusedItem(e)}
-                  onMouseLeave={() => this.handleFocusedItem(false)}
-                >
-                  <span>{e.node.title}</span>
-                </Link>
-              ))}
-            </div>
-          </Container>
+          {/* <Container> */}
+          <StaticQuery
+            query={graphql`
+              query {
+                allContentfulWork(filter: { node_locale: { eq: "en-US" } }) {
+                  edges {
+                    node {
+                      title
+                      slug
+                      id
+                      mainImage {
+                        file {
+                          url
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `}
+            render={data => (
+              <div className="project-nav__nav-list">
+                {data.allContentfulWork.edges.map(e => (
+                  <li key={e.node.id}>
+                    <Link
+                      to={`project/${e.node.slug}`}
+                      className="project-nav__link"
+                      onMouseEnter={() => this.handleFocusedItem(e)}
+                      onMouseLeave={() => this.handleFocusedItem(false)}
+                    >
+                      <span>{e.node.title}</span>
+                    </Link>
+                  </li>
+                ))}
+              </div>
+            )}
+          />
+          {/* </Container> */}
           <div className="project-nav__right">{imageToDisplay}</div>
         </ProjectNavEl>
       </div>

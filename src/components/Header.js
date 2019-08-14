@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Link, StaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
 import vars from '../utils/emotionVars';
 import '../styles/variables.scss';
 import Container from './Container';
@@ -46,69 +46,49 @@ const LogoEl = styled.div`
   z-index: 999;
 `;
 
-const Header = ({ data }, props) => {
-  const navItems = [
-    { title: 'Work', id: 'nav--work', value: 'work' },
-    { title: 'Contact', id: 'nav--contact', value: 'contact' },
-    { title: 'About', id: 'nav--about', value: 'about' },
-  ];
-  return (
-    <div>
-      <LogoEl
-        className="header__logo"
-        onClick={() => {
-          props.onSettingActiveComponent('home');
-        }}
-      >
-        AYANA
-      </LogoEl>
-      <Container>
-        <HeaderEl>
-          <ul className="header__nav-list">
-            {navItems.map(item => (
-              <li key={item.id}>
-                <Link
-                  to="/"
-                  className="header__nav-link"
-                  id={item.id}
-                  data-value={item.value}
-                  onClick={() => {
-                    props.onSettingActiveComponent(item.value);
-                  }}
-                >
-                  <span>{item.title}</span>
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isNavOpen: false,
+    };
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+  toggleMenu() {
+    this.setState({ isNavOpen: !this.state.isNavOpen });
+  }
+  render() {
+    return (
+      <div>
+        <LogoEl className="header__logo">
+          <Link to="/">AYANA</Link>
+        </LogoEl>
+        <Container>
+          <HeaderEl>
+            <ul className="header__nav-list">
+              <li>
+                <ul className="project-nav__nav-list" onClick={this.toggleMenu}>
+                  <span className="header__nav-link">Work</span>
+                  <ProjectNav isNavOpen={this.state.isNavOpen} />
+                </ul>
+              </li>
+              <li>
+                <Link to="/contact" className="header__nav-link">
+                  <span>Contact</span>
                 </Link>
               </li>
-            ))}
-          </ul>
-        </HeaderEl>
-      </Container>
-      <StaticQuery
-        query={graphql`
-          query {
-            allContentfulWork(filter: { node_locale: { eq: "en-US" } }) {
-              edges {
-                node {
-                  title
-                  slug
-                  id
-                  mainImage {
-                    file {
-                      url
-                    }
-                  }
-                }
-              }
-            }
-          }
-        `}
-        render={data => (
-          <ProjectNav allProjects={data.allContentfulWork.edges} />
-        )}
-      />
-    </div>
-  );
-};
+              <li>
+                <Link to="/about" className="header__nav-link">
+                  <span>About</span>
+                </Link>
+              </li>
+            </ul>
+          </HeaderEl>
+        </Container>
+      </div>
+    );
+  }
+}
 
 export default Header;
 
