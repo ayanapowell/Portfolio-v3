@@ -7,11 +7,21 @@ import defaultImage from '../images/colored-paper.jpg';
 import SiteWrapper from './SiteWrapper';
 
 const ProjectNavEl = styled.div`
+  position: fixed;
+  height: calc(100% - 150px);
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  z-index: 2;
   .project-nav {
-    width: 50%;
     &__nav-list {
       display: flex;
       flex-direction: column;
+      padding-left: 0;
+      transform: translateY(-50px);
     }
     &__link {
       font-family: ${vars.ff_secondary};
@@ -29,19 +39,28 @@ const ProjectNavEl = styled.div`
       }
     }
     &__right {
-      position: absolute;
+      border: 1px solid pink;
+      width: 100%;
+      height: 100%;
+      ${'' /* position: absolute;
       top: 0;
       right: 0;
       height: 100%;
-      width: 50%;
-      img {
+      width: 50%; */} ${'' /* img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-      }
+      } */};
     }
   }
 `;
+
+const NavigationImage = styled.div`
+  border: 1px solid pink;
+  width: 50%;
+  height: 100%;
+`;
+
 class ProjectNav extends Component {
   constructor(props) {
     super(props);
@@ -70,9 +89,8 @@ class ProjectNav extends Component {
       imageToDisplay = <img src={defaultImage} />;
     }
     return (
-      <div className="">
+      <>
         <ProjectNavEl className="project-nav">
-          {/* <Container> */}
           <StaticQuery
             query={graphql`
               query {
@@ -93,26 +111,29 @@ class ProjectNav extends Component {
               }
             `}
             render={data => (
-              <div className="project-nav__nav-list">
-                {data.allContentfulWork.edges.map(e => (
-                  <li key={e.node.id}>
-                    <Link
-                      to={`project/${e.node.slug}`}
-                      className="project-nav__link"
-                      onMouseEnter={() => this.handleFocusedItem(e)}
-                      onMouseLeave={() => this.handleFocusedItem(false)}
-                    >
-                      <span>{e.node.title}</span>
-                    </Link>
-                  </li>
-                ))}
-              </div>
+              <Container>
+                <div className="project-nav__nav-list">
+                  {data.allContentfulWork.edges.map(e => (
+                    <li key={e.node.id}>
+                      <Link
+                        to={`project/${e.node.slug}`}
+                        className="project-nav__link"
+                        onMouseEnter={() => this.handleFocusedItem(e)}
+                        onMouseLeave={() => this.handleFocusedItem(false)}
+                      >
+                        <span>{e.node.title}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </div>
+              </Container>
             )}
           />
-          {/* </Container> */}
-          <div className="project-nav__right">{imageToDisplay}</div>
         </ProjectNavEl>
-      </div>
+        {/* <NavigationImage>
+          <h1>Hello world</h1>
+        </NavigationImage> */}
+      </>
     );
   }
 }

@@ -43,7 +43,7 @@ const IntroEl = styled.div`
 `;
 const Intro = () => {
   return (
-    <div>
+    <>
       <Container>
         <IntroEl className="col-sm-9 px-0">
           <h1 className="intro__title">
@@ -59,7 +59,7 @@ const Intro = () => {
           </p>
         </IntroEl>
       </Container>
-    </div>
+    </>
   );
 };
 

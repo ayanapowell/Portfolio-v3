@@ -6,6 +6,8 @@ import '../styles/variables.scss';
 import Container from './Container';
 import ProjectNav from './ProjectNav';
 import Project from '../templates/Project';
+import { PassThrough } from 'stream';
+import { throws } from 'assert';
 
 const HeaderEl = styled.div`
   position: relative;
@@ -50,16 +52,17 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isNavOpen: false,
+      isHidden: true,
     };
     this.toggleMenu = this.toggleMenu.bind(this);
   }
   toggleMenu() {
-    this.setState({ isNavOpen: !this.state.isNavOpen });
+    this.setState({ isHidden: !this.state.isHidden });
   }
+
   render() {
     return (
-      <div>
+      <>
         <LogoEl className="header__logo">
           <Link to="/">AYANA</Link>
         </LogoEl>
@@ -67,9 +70,11 @@ class Header extends React.Component {
           <HeaderEl>
             <ul className="header__nav-list">
               <li>
-                <ul className="project-nav__nav-list" onClick={this.toggleMenu}>
+                <ul className="header__nav-list" onClick={this.toggleMenu}>
                   <span className="header__nav-link">Work</span>
-                  <ProjectNav isNavOpen={this.state.isNavOpen} />
+                  <div className="header__nav-list--inner">
+                    {!this.state.isHidden && <ProjectNav />}
+                  </div>
                 </ul>
               </li>
               <li>
@@ -85,7 +90,7 @@ class Header extends React.Component {
             </ul>
           </HeaderEl>
         </Container>
-      </div>
+      </>
     );
   }
 }
