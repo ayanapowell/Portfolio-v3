@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import vars from '../utils/emotionVars';
 import Container from '../components/Container';
 import Hero from '../components/project/Hero';
 import DescriptionCopy from '../components/project/DescriptionCopy';
+import Image2up from '../components/project/Image2up';
 
 const ProjectEl = styled.div`
   background: linear-gradient(#fff 0%, #fff 260px, #f4e8e8 260px);
+  overflow: hidden;
 `;
 
 class Project extends Component {
@@ -41,13 +42,15 @@ class Project extends Component {
       body,
       id,
       mainImage,
+      imageVertical,
+      imageHorizontal,
       projectUrl,
       slug,
     } = this.props.data.contentfulWork;
-    console.log(body);
+
     return (
       <ProjectEl className="project__wrapper">
-        <Hero title={this.state.title} image={mainImage.file.url} />>
+        <Hero title={this.state.title} image={mainImage.file.url} />
         <div className="project__content">
           <Container>
             <DescriptionCopy
@@ -55,12 +58,17 @@ class Project extends Component {
               projectUrl={projectUrl}
             />
           </Container>
+
+          <Image2up
+            verticalImage={imageVertical.file.url}
+            horizontalImage={imageHorizontal.file.url}
+          />
         </div>
       </ProjectEl>
     );
   }
 }
-// background: linear-gradient(#fff 250px, red 100%);
+
 Project.propTypes = {
   data: PropTypes.object.isRequired,
 };
@@ -81,6 +89,16 @@ export const pageQuery = graphql`
         }
       }
       mainImage {
+        file {
+          url
+        }
+      }
+      imageHorizontal {
+        file {
+          url
+        }
+      }
+      imageVertical {
         file {
           url
         }

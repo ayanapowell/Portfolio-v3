@@ -10,6 +10,7 @@ const DescriptionEl = styled.div`
   .project__link {
     align-items: center;
     display: flex;
+    justify-content: flex-end;
     &::before {
       content: '';
       height: 90px;
@@ -33,7 +34,9 @@ const DescriptionCopy = props => {
           }}
         />
         <div className="offset-sm-1 col-sm-3 project__link">
-          <a href={props.projectUrl}>Visit site</a>
+          <a href={props.projectUrl} target="_blank">
+            Visit site
+          </a>
         </div>
       </DescriptionEl>
     </>
