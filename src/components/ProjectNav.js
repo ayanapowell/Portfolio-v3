@@ -4,7 +4,6 @@ import { Link, StaticQuery } from 'gatsby';
 import vars from '../utils/emotionVars';
 import Container from './Container';
 import defaultImage from '../images/colored-paper.jpg';
-import SiteWrapper from './SiteWrapper';
 
 const ProjectNavEl = styled.div`
   position: fixed;
@@ -37,20 +36,6 @@ const ProjectNavEl = styled.div`
           border-bottom: 3px solid pink;
         }
       }
-    }
-    &__right {
-      border: 1px solid pink;
-      width: 100%;
-      height: 100%;
-      ${'' /* position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-      width: 50%; */} ${'' /* img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      } */};
     }
   }
 `;
@@ -112,12 +97,13 @@ class ProjectNav extends Component {
             `}
             render={data => (
               <Container>
-                <div className="project-nav__nav-list">
+                <ul className="project-nav__nav-list">
                   {data.allContentfulWork.edges.map(e => (
                     <li key={e.node.id}>
                       <Link
                         to={`project/${e.node.slug}`}
                         className="project-nav__link"
+                        onClick={() => this.props.handleNavToggle()}
                         onMouseEnter={() => this.handleFocusedItem(e)}
                         onMouseLeave={() => this.handleFocusedItem(false)}
                       >
@@ -125,14 +111,11 @@ class ProjectNav extends Component {
                       </Link>
                     </li>
                   ))}
-                </div>
+                </ul>
               </Container>
             )}
           />
         </ProjectNavEl>
-        {/* <NavigationImage>
-          <h1>Hello world</h1>
-        </NavigationImage> */}
       </>
     );
   }

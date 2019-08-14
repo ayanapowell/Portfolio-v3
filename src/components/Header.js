@@ -5,9 +5,6 @@ import vars from '../utils/emotionVars';
 import '../styles/variables.scss';
 import Container from './Container';
 import ProjectNav from './ProjectNav';
-import Project from '../templates/Project';
-import { PassThrough } from 'stream';
-import { throws } from 'assert';
 
 const HeaderEl = styled.div`
   position: relative;
@@ -58,6 +55,7 @@ class Header extends React.Component {
   }
   toggleMenu() {
     this.setState({ isHidden: !this.state.isHidden });
+    console.log(61);
   }
 
   render() {
@@ -70,12 +68,13 @@ class Header extends React.Component {
           <HeaderEl>
             <ul className="header__nav-list">
               <li>
-                <ul className="header__nav-list" onClick={this.toggleMenu}>
-                  <span className="header__nav-link">Work</span>
-                  <div className="header__nav-list--inner">
-                    {!this.state.isHidden && <ProjectNav />}
-                  </div>
-                </ul>
+                <span className="header__nav-link" onClick={this.toggleMenu}>
+                  Work
+                </span>
+
+                {!this.state.isHidden && (
+                  <ProjectNav handleNavToggle={this.toggleMenu} />
+                )}
               </li>
               <li>
                 <Link to="/contact" className="header__nav-link">
