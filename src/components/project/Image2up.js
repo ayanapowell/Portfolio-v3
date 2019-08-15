@@ -42,13 +42,11 @@ const Image2up = props => {
               <div className="image2up__image-wrapper">
                 <img src={props.horizontalImage} alt="" />
               </div>
-              <p>
-                Dolorem nulla aliquam sem dis dolores deleniti tempus? Itaque
-                qui. Nisl tellus mollitia laboriosam. Explicabo, dicta praesent
-                luctus, ante, ipsam feugiat! In! Primis maxime dignissim
-                suscipit? Vel torquent volutpat voluptas, ducimus placerat
-                hendrerit vitae minus molestie! Scelerisque.
-              </p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: props.body,
+                }}
+              />
             </div>
           </div>
         </div>

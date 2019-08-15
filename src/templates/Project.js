@@ -38,12 +38,16 @@ class Project extends Component {
   }
   render() {
     const {
-      description,
-      body,
-      id,
       mainImage,
-      imageVertical,
-      imageHorizontal,
+      body,
+      row2Body,
+      row2HorizontalImage,
+      row2VerticalImage,
+      row3Images,
+      row4Image,
+      row5Title,
+      row5Body,
+      row6Images,
       projectUrl,
       slug,
     } = this.props.data.contentfulWork;
@@ -60,8 +64,9 @@ class Project extends Component {
           </Container>
 
           <Image2up
-            verticalImage={imageVertical.file.url}
-            horizontalImage={imageHorizontal.file.url}
+            verticalImage={row2VerticalImage.file.url}
+            horizontalImage={row2HorizontalImage.file.url}
+            body={row2Body}
           />
         </div>
       </ProjectEl>
@@ -79,28 +84,55 @@ export const pageQuery = graphql`
   query($slug: String!) {
     contentfulWork(slug: { eq: $slug }) {
       title
-      slug
-      id
-      projectUrl
-      description
+      mainImage {
+        id
+        file {
+          url
+          fileName
+          contentType
+        }
+      }
       body {
         childMarkdownRemark {
           html
         }
       }
-      mainImage {
+      row2Body
+      row2HorizontalImage {
         file {
           url
         }
       }
-      imageHorizontal {
+      row2VerticalImage {
         file {
           url
         }
       }
-      imageVertical {
+      row3Images {
+        id
         file {
           url
+          fileName
+          contentType
+        }
+      }
+      row4Image {
+        file {
+          url
+        }
+      }
+      row5Title
+      row5Body {
+        childMarkdownRemark {
+          html
+        }
+      }
+      row6Images {
+        id
+        file {
+          url
+          fileName
+          contentType
         }
       }
     }

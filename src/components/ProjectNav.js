@@ -95,25 +95,7 @@ class ProjectNav extends Component {
                 }
               }
             `}
-            render={data => (
-              <Container>
-                <ul className="project-nav__nav-list">
-                  {data.allContentfulWork.edges.map(e => (
-                    <li key={e.node.id}>
-                      <Link
-                        to={`project/${e.node.slug}`}
-                        className="project-nav__link"
-                        onClick={() => this.props.handleNavToggle()}
-                        onMouseEnter={() => this.handleFocusedItem(e)}
-                        onMouseLeave={() => this.handleFocusedItem(false)}
-                      >
-                        <span>{e.node.title}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </Container>
-            )}
+            render={data => <div>{JSON.stringify(data)}</div>}
           />
         </ProjectNavEl>
       </>
