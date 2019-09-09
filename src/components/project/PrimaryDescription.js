@@ -6,7 +6,8 @@ const DescriptionEl = styled.div`
   p {
     font-size: 22px;
   }
-
+  h2 {
+  }
   .project__link {
     align-items: center;
     display: flex;
@@ -23,10 +24,11 @@ const DescriptionEl = styled.div`
     }
   }
 `;
-const DescriptionCopy = props => {
+const PrimaryDescription = props => {
   return (
     <>
       <DescriptionEl className="row">
+        <h2 className="desciption__title">{props.title}</h2>
         <p
           className="col-sm-8"
           dangerouslySetInnerHTML={{
@@ -43,4 +45,4 @@ const DescriptionCopy = props => {
   );
 };
 
-export default DescriptionCopy;
+export default PrimaryDescription;

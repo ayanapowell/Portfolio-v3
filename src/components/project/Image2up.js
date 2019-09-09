@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import vars from '../../utils/emotionVars';
-import Container from '../Container';
 
 const Image2upEl = styled.div`
+  padding-bottom: 80px;
   img {
     width: 100%;
     height: 100%;
@@ -14,7 +13,7 @@ const Image2upEl = styled.div`
   }
   .col-left {
     padding-left: 0;
-    max-height: 700px;
+    height: 700px;
     img {
       width: 100vw;
       position: relative;

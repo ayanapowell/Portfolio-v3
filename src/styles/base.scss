@@ -45,9 +45,10 @@ p {
 }
 
 p,
-a:not(.logo) {
-  font-size: 20px;
-  line-height: 1.4;
+a:not(.logo),
+li {
+  font-size: 18px;
+  line-height: 1.5;
 }
 
 a {
@@ -72,4 +73,5 @@ button {
 
 ul {
   list-style: none;
+  padding: 0;
 }

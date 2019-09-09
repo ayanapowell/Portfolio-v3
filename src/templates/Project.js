@@ -4,12 +4,24 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Container from '../components/Container';
 import Hero from '../components/project/Hero';
-import DescriptionCopy from '../components/project/DescriptionCopy';
-import Image2up from '../components/project/Image2up';
+import PrimaryDescription from '../components/project/PrimaryDescription';
+import ProjectDetail from '../components/project/ProjectDetail';
+import ImageRow from '../components/project/ImageRow';
+import SecondaryDescription from '../components/project/SecondaryDescription';
+import Video from '../components/project/Video';
+import DeviceDetail from '../components/project/DeviceDetail';
 
 const ProjectEl = styled.div`
-  background: linear-gradient(#fff 0%, #fff 260px, #f4e8e8 260px);
   overflow: hidden;
+  .bg-primary {
+    background: linear-gradient(#fff 0%, #fff 260px, #f4e8e8 260px);
+  }
+  .bg-secondary {
+    background: linear-gradient(#fff 0%, #fff 100px, #f4e8e8 100px);
+  }
+  .bg-tertiary {
+    background: linear-gradient(#fff 0%, #fff 100px, #f9f9f9 100px);
+  }
 `;
 
 class Project extends Component {
@@ -38,36 +50,69 @@ class Project extends Component {
   }
   render() {
     const {
-      mainImage,
-      body,
-      row2Body,
-      row2HorizontalImage,
-      row2VerticalImage,
-      row3Images,
-      row4Image,
-      row5Title,
-      row5Body,
-      row6Images,
-      projectUrl,
       slug,
+      projectUrl,
+      description,
+      secondaryDescription,
+      tertiaryDescription,
+      siteDetailList,
+      mainImage,
+      inlineImages,
+      stackedImages,
+      detailImage,
+      tabletMobileImage,
+      video,
     } = this.props.data.contentfulWork;
 
     return (
       <ProjectEl className="project__wrapper">
-        <Hero title={this.state.title} image={mainImage.file.url} />
-        <div className="project__content">
+        {/* ===== Hero & intro section ===== */}
+        <div className="bg-primary">
+          <Hero title={this.state.title} image={mainImage.file.url} />
+          <div className="project__content">
+            <Container>
+              <PrimaryDescription body={description} projectUrl={projectUrl} />
+            </Container>
+          </div>
+        </div>
+
+        {/* ===== Image row section ===== */}
+        <ImageRow />
+
+        {/* ===== Secondary description section ===== */}
+        <Container>
+          <SecondaryDescription
+            title="Secondary Description"
+            body={description}
+          />
+        </Container>
+
+        <div className="bg-secondary">
+          {/* ===== Video section ===== */}
+          <Video video={video} />
+
+          {/* ===== Project detail section ===== */}
           <Container>
-            <DescriptionCopy
-              body={body.childMarkdownRemark.html}
-              projectUrl={projectUrl}
+            <ProjectDetail
+              detailImage={detailImage.file.url}
+              detailList={siteDetailList}
             />
           </Container>
+        </div>
 
-          <Image2up
-            verticalImage={row2VerticalImage.file.url}
-            horizontalImage={row2HorizontalImage.file.url}
-            body={row2Body}
+        {/* ===== Tertiary description section ===== */}
+        <Container>
+          <SecondaryDescription
+            title="Tertiary Description"
+            body={description}
           />
+        </Container>
+
+        {/* ===== Device detail section ===== */}
+        <div className="bg-tertiary">
+          <Container>
+            <DeviceDetail />
+          </Container>
         </div>
       </ProjectEl>
     );
@@ -92,23 +137,19 @@ export const pageQuery = graphql`
           contentType
         }
       }
-      body {
-        childMarkdownRemark {
-          html
+      description
+      secondaryDescription
+      tertiaryDescription {
+        content {
+          nodeType
+          content {
+            value
+            nodeType
+          }
         }
       }
-      row2Body
-      row2HorizontalImage {
-        file {
-          url
-        }
-      }
-      row2VerticalImage {
-        file {
-          url
-        }
-      }
-      row3Images {
+      siteDetailList
+      inlineImages {
         id
         file {
           url
@@ -116,18 +157,31 @@ export const pageQuery = graphql`
           contentType
         }
       }
-      row4Image {
+      stackedImages {
+        id
         file {
           url
+          fileName
+          contentType
         }
       }
-      row5Title
-      row5Body {
-        childMarkdownRemark {
-          html
+      detailImage {
+        id
+        file {
+          url
+          fileName
+          contentType
         }
       }
-      row6Images {
+      tabletmobileImage {
+        id
+        file {
+          url
+          fileName
+          contentType
+        }
+      }
+      video {
         id
         file {
           url

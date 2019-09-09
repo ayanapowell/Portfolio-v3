@@ -36,7 +36,7 @@ const HeroEl = styled.div`
     .inner {
       height: 100%;
       width: 100%;
-      box-shadow: 0 1px 1px #f2f2f2f2;
+      box-shadow: 0 1px 1px #f2f2f2;
     }
   }
 `;
