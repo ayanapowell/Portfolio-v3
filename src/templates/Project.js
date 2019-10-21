@@ -10,6 +10,7 @@ import ImageRow from '../components/project/ImageRow';
 import SecondaryDescription from '../components/project/SecondaryDescription';
 import Video from '../components/project/Video';
 import DeviceDetail from '../components/project/DeviceDetail';
+import Footer from '../components/project/Footer';
 
 const ProjectEl = styled.div`
   overflow: hidden;
@@ -20,7 +21,7 @@ const ProjectEl = styled.div`
     background: linear-gradient(#fff 0%, #fff 100px, #f4e8e8 100px);
   }
   .bg-tertiary {
-    background: linear-gradient(#fff 0%, #fff 100px, #f9f9f9 100px);
+    background: linear-gradient(#fff 0%, #fff 180px, #efe8e8 180px);
   }
 `;
 
@@ -60,7 +61,7 @@ class Project extends Component {
       inlineImages,
       stackedImages,
       detailImage,
-      tabletMobileImage,
+      tabletmobileImage,
       video,
     } = this.props.data.contentfulWork;
 
@@ -111,9 +112,12 @@ class Project extends Component {
         {/* ===== Device detail section ===== */}
         <div className="bg-tertiary">
           <Container>
-            <DeviceDetail />
+            <DeviceDetail image={tabletmobileImage[0].file.url} />
           </Container>
         </div>
+
+        {/* ===== Footer section ===== */}
+        <Footer />
       </ProjectEl>
     );
   }

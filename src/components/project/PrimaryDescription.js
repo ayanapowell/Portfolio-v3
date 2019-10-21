@@ -6,8 +6,7 @@ const DescriptionEl = styled.div`
   p {
     font-size: 22px;
   }
-  h2 {
-  }
+
   .project__link {
     align-items: center;
     display: flex;

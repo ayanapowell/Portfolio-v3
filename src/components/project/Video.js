@@ -8,7 +8,7 @@ const VideoEl = styled.div`
     margin-bottom: 80px;
   }
   .video {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     object-fit: cover;
   }
@@ -21,9 +21,9 @@ const Video = props => {
   return (
     <>
       <VideoEl>
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
-            <div className="video__wrapper offset-sm-2">
+            <div className="video__wrapper offset-sm-1">
               <video autoPlay muted loop playsInline className="video">
                 <source
                   src={props.video.file.url}

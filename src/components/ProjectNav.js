@@ -4,6 +4,7 @@ import { Link, StaticQuery } from 'gatsby';
 import vars from '../utils/emotionVars';
 import Container from './Container';
 import defaultImage from '../images/colored-paper.jpg';
+import Header from './Header';
 
 const ProjectNavEl = styled.div`
   position: fixed;
@@ -20,7 +21,6 @@ const ProjectNavEl = styled.div`
       display: flex;
       flex-direction: column;
       padding-left: 0;
-      transform: translateY(-50px);
     }
     &__link {
       font-family: ${vars.ff_secondary};
@@ -41,9 +41,17 @@ const ProjectNavEl = styled.div`
 `;
 
 const NavigationImage = styled.div`
-  border: 1px solid pink;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
   width: 50%;
   height: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 class ProjectNav extends Component {
@@ -115,6 +123,7 @@ class ProjectNav extends Component {
               </Container>
             )}
           />
+          <NavigationImage>{imageToDisplay}</NavigationImage>
         </ProjectNavEl>
       </div>
     );

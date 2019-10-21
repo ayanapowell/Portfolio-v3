@@ -37,8 +37,8 @@ const ProjectDetail = props => {
         </div>
         <div className="offset-sm-1 col-sm-3">
           <ul>
-            {props.detailList.map(item => (
-              <li>
+            {props.detailList.map((item, index) => (
+              <li key={`detail-item-${index}`}>
                 <div className="divider" />
                 {item}
               </li>

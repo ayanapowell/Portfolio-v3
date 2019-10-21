@@ -56,10 +56,12 @@ class Header extends React.Component {
   }
   toggleMenu() {
     this.setState({ isHidden: !this.state.isHidden });
-    console.log(61);
   }
 
   render() {
+    if (!this.state.isHidden) {
+      document.body.style.overflow = 'hidden';
+    }
     return (
       <>
         <LogoEl className="header__logo">
