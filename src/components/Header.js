@@ -56,11 +56,14 @@ class Header extends React.Component {
   }
   toggleMenu() {
     this.setState({ isHidden: !this.state.isHidden });
+    console.log(this.state.isHidden);
   }
 
   render() {
     if (!this.state.isHidden) {
       document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
     }
     return (
       <>

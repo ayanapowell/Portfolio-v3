@@ -4,7 +4,6 @@ import { Link, StaticQuery } from 'gatsby';
 import vars from '../utils/emotionVars';
 import Container from './Container';
 import defaultImage from '../images/colored-paper.jpg';
-import Header from './Header';
 
 const ProjectNavEl = styled.div`
   position: fixed;
