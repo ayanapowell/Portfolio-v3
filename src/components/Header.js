@@ -5,8 +5,10 @@ import vars from '../utils/emotionVars';
 import '../styles/variables.scss';
 import Container from './Container';
 import ProjectNav from './ProjectNav';
+import SiteName from './SiteName';
 
 const HeaderEl = styled.div`
+  display: none;
   position: relative;
   padding-top: 45px;
   .header__nav-list {
@@ -30,22 +32,6 @@ const HeaderEl = styled.div`
   }
 `;
 
-const LogoEl = styled.div`
-  transform: rotate(-90deg);
-  margin-top: 100px;
-  margin-left: 30px;
-  position: absolute;
-  cursor: pointer;
-  z-index: 999;
-
-  a {
-    font-family: ${vars.ff_secondary};
-    font-size: 34px;
-    font-weight: 400;
-    letter-spacing: 2px;
-  }
-`;
-
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -56,10 +42,9 @@ class Header extends React.Component {
   }
   toggleMenu() {
     this.setState({ isHidden: !this.state.isHidden });
-    console.log(this.state.isHidden);
   }
-
   render() {
+    // Disable scrolling when navigation is open
     if (!this.state.isHidden) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -67,9 +52,7 @@ class Header extends React.Component {
     }
     return (
       <>
-        <LogoEl className="header__logo">
-          <Link to="/">AYANA</Link>
-        </LogoEl>
+        <SiteName />
         <Container>
           <HeaderEl>
             <ul className="header__nav-list">
