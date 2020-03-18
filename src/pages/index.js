@@ -8,7 +8,14 @@ import Container from '../components/Container';
 
 const IntroEl = styled.div`
   font-family: ${vars.ff_primary};
-  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .container--intro {
+    height: calc(100% - 115px);
+    display: flex;
+    align-items: center;
+  }
   .intro__title,
   .intro__subtitle {
     font-weight: 300;
@@ -44,12 +51,6 @@ const IntroEl = styled.div`
   }
 `;
 
-const NavigationImage = styled.div`
-  border: 1px solid pink;
-  width: 50%;
-  height: 100%;
-`;
-
 class IndexPage extends React.Component {
   constructor(props) {
     super(props);
@@ -65,21 +66,22 @@ class IndexPage extends React.Component {
   render() {
     return (
       <>
-        <Container>
-          <IntroEl className="col-sm-9 px-0">
-            <h1 className="intro__title">
-              <span>Ayana Powell</span>
-            </h1>
-            <h1 className="intro__subtitle">
-              <span>Web Developer</span>
-            </h1>
-            <p className="intro__description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              <button>View my work</button>
-            </p>
-          </IntroEl>
-        </Container>
+        <IntroEl>
+          <Container modifier="intro">
+            <div className="intro col-sm-9 px-0">
+              <h1 className="intro__title">
+                <span>Ayana Powell</span>
+              </h1>
+              <h1 className="intro__subtitle">
+                <span>Web Developer</span>
+              </h1>
+              <p className="intro__description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+          </Container>
+        </IntroEl>
       </>
     );
   }

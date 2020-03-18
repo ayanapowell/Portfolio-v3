@@ -8,9 +8,12 @@ import ProjectNav from './ProjectNav';
 import SiteName from './SiteName';
 
 const HeaderEl = styled.div`
-  display: none;
-  position: relative;
-  padding-top: 45px;
+  height: 115px;
+  display: flex;
+  align-items: center;
+  .container--header {
+    position: relative;
+  }
   .header__nav-list {
     display: flex;
     padding: 0;
@@ -52,9 +55,9 @@ class Header extends React.Component {
     }
     return (
       <>
-        <SiteName />
-        <Container>
-          <HeaderEl>
+        <HeaderEl className="header">
+          <SiteName />
+          <Container modifier={this.props.modifier}>
             <ul className="header__nav-list">
               <li>
                 <span className="header__nav-link" onClick={this.toggleMenu}>
@@ -76,8 +79,8 @@ class Header extends React.Component {
                 </Link>
               </li>
             </ul>
-          </HeaderEl>
-        </Container>
+          </Container>
+        </HeaderEl>
       </>
     );
   }
