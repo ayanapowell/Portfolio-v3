@@ -30,6 +30,9 @@ const HeaderEl = styled.div`
       background: black;
       margin: 0 4px;
     }
+    &__inner--left {
+      display: none;
+    }
   }
   .container--header {
     position: relative;
@@ -66,18 +69,66 @@ class Header extends React.Component {
     this.handleHover = this.handleHover.bind(this);
   }
   componentDidUpdate() {
-    if (this.state.navIsOpen) {
-      TweenMax.to('.circle__inner', 0.4, {
-        margin: 0,
-      });
-
-      TweenMax.to('.circle__inner--left', 0.4, {
-        color: 'red',
-      });
-      TweenMax.to('.circle__inner--right', 0.4, {
-        color: 'blue',
-      });
+    if (
+      (!this.state.isHovered && !this.state.navIsOpen) ||
+      (this.state.navIsOpen && this.state.isHovered)
+    ) {
+      this.animateDefault();
+    } else if (this.state.navIsOpen && !this.state.isHovered) {
+      this.animateClose();
+    } else if (!this.state.navIsOpen && this.state.isHovered) {
+      this.animateHome();
     }
+  }
+  animateHome(state = '') {
+    TweenMax.to('.circle__inner', 0.2, {
+      ease: Power0.easeOut,
+      rotation: state === 'revert' ? 0 : 90,
+    });
+  }
+  animateDefault() {
+    TweenMax.to('.circle__inner', 0.2, {
+      ease: Power0.easeOut,
+      scale: 0,
+    });
+    TweenMax.to('.circle__inner', 0.2, {
+      ease: Power0.easeOut,
+      delay: 0.3,
+      rotation: 0,
+    });
+    TweenMax.to('.circle__inner--left', 0, {
+      ease: Power0.easeOut,
+      delay: 0.3,
+      display: 'none',
+    });
+    TweenMax.to('.circle__inner--right', 0.2, {
+      ease: Power0.easeOut,
+      delay: 0.4,
+      scale: 1,
+    });
+  }
+  animateClose() {
+    TweenMax.to('.circle__inner', 0.2, {
+      ease: Power0.easeOut,
+      scale: 0,
+      margin: 0,
+    });
+    TweenMax.to('.circle__inner--left', 0, {
+      ease: Power0.easeOut,
+      delay: 0.2,
+      display: 'block',
+      rotation: 45,
+    });
+    TweenMax.to('.circle__inner--right', 0.2, {
+      delay: 0.2,
+      ease: Power0.easeOut,
+      rotation: -45,
+    });
+    TweenMax.to('.circle__inner', 0.2, {
+      delay: 0.4,
+      ease: Power0.easeOut,
+      scale: '1',
+    });
   }
   toggleMenu() {
     this.setState({ navIsOpen: !this.state.navIsOpen });
@@ -102,8 +153,8 @@ class Header extends React.Component {
             onMouseEnter={this.handleHover}
             onMouseLeave={this.handleHover}
           >
-            <span className="circle__inner cicle__inner--left"></span>
-            <span className="circle__inner cicle__inner--right"></span>
+            <span className="circle__inner circle__inner--left"></span>
+            <span className="circle__inner  circle__inner--right"></span>
           </Link>
           <Container modifier={this.props.modifier}>
             <ul className="header__nav-list">
