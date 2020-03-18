@@ -6,12 +6,8 @@ import { TweenMax } from 'gsap';
 import logo from '../images/logo.png';
 
 const SiteNameEl = styled.div`
-  transform: rotate(-90deg);
-  margin-top: 100px;
-  margin-left: 30px;
-  position: absolute;
+  ${'' /* transform: rotate(-90deg); */}
   cursor: pointer;
-  z-index: 999;
 
   a {
     font-family: ${vars.ff_secondary};

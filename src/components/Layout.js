@@ -11,7 +11,7 @@ const LayoutEl = styled.div`
 
 const Layout = ({ children }) => {
   let modifier;
-  if (children.props.location.pathname === '/') {
+  if (window.location.pathname === '/') {
     modifier = 'hp';
   }
   return (

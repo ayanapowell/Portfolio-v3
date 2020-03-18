@@ -8,9 +8,28 @@ import ProjectNav from './ProjectNav';
 import SiteName from './SiteName';
 
 const HeaderEl = styled.div`
+  position: relative;
   height: 115px;
   display: flex;
   align-items: center;
+  .circle {
+    display: flex;
+    position: absolute;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    padding: 12px 0;
+    border-radius: 50%;
+    background: #f0f0f0;
+
+    &::after {
+      content: '';
+      height: 100%;
+      width: 1px;
+      margin: 0 auto;
+      background: black;
+    }
+  }
   .container--header {
     position: relative;
   }
@@ -53,10 +72,11 @@ class Header extends React.Component {
     } else {
       document.body.style.overflow = 'auto';
     }
+
     return (
       <>
         <HeaderEl className="header">
-          <SiteName />
+          <Link to="/" className="circle"></Link>
           <Container modifier={this.props.modifier}>
             <ul className="header__nav-list">
               <li>
