@@ -26,12 +26,8 @@ const HeaderEl = styled.div`
 
     &__inner {
       height: 100%;
-      width: 1px;
+      width: 0.5px;
       background: black;
-      margin: 0 4px;
-    }
-    &__inner--left {
-      display: none;
     }
   }
   .container--header {
@@ -67,75 +63,55 @@ class Header extends React.Component {
     };
     this.toggleMenu = this.toggleMenu.bind(this);
     this.handleHover = this.handleHover.bind(this);
+    this.animateNav = this.animateNav.bind(this);
+    this.animateHome = this.animateHome.bind(this);
   }
   componentDidUpdate() {
-    if (
-      (!this.state.isHovered && !this.state.navIsOpen) ||
-      (this.state.navIsOpen && this.state.isHovered)
-    ) {
-      this.animateDefault();
-    } else if (this.state.navIsOpen && !this.state.isHovered) {
-      this.animateClose();
-    } else if (!this.state.navIsOpen && this.state.isHovered) {
-      this.animateHome();
+    console.log(this.state);
+    if (this.state.navIsOpen) {
+      this.animateNav(this.state.isHovered);
+    } else {
+      this.animateHome(this.state.isHovered);
     }
-  }
-  animateHome(state = '') {
-    TweenMax.to('.circle__inner', 0.2, {
-      ease: Power0.easeOut,
-      rotation: state === 'revert' ? 0 : 90,
-    });
-  }
-  animateDefault() {
-    TweenMax.to('.circle__inner', 0.2, {
-      ease: Power0.easeOut,
-      scale: 0,
-    });
-    TweenMax.to('.circle__inner', 0.2, {
-      ease: Power0.easeOut,
-      delay: 0.3,
-      rotation: 0,
-    });
-    TweenMax.to('.circle__inner--left', 0, {
-      ease: Power0.easeOut,
-      delay: 0.3,
-      display: 'none',
-    });
-    TweenMax.to('.circle__inner--right', 0.2, {
-      ease: Power0.easeOut,
-      delay: 0.4,
-      scale: 1,
-    });
-  }
-  animateClose() {
-    TweenMax.to('.circle__inner', 0.2, {
-      ease: Power0.easeOut,
-      scale: 0,
-      margin: 0,
-    });
-    TweenMax.to('.circle__inner--left', 0, {
-      ease: Power0.easeOut,
-      delay: 0.2,
-      display: 'block',
-      rotation: 45,
-    });
-    TweenMax.to('.circle__inner--right', 0.2, {
-      delay: 0.2,
-      ease: Power0.easeOut,
-      rotation: -45,
-    });
-    TweenMax.to('.circle__inner', 0.2, {
-      delay: 0.4,
-      ease: Power0.easeOut,
-      scale: '1',
-    });
   }
   toggleMenu() {
     this.setState({ navIsOpen: !this.state.navIsOpen });
+    this.animateNav(this.state.isHovered);
   }
   handleHover() {
     this.setState({ isHovered: !this.state.isHovered });
   }
+
+  animateHome(isHovered) {
+    console.log(isHovered);
+    TweenMax.to('.circle__inner', 0.2, {
+      ease: Power0.easeOut,
+      rotation: isHovered ? 90 : 0,
+    });
+  }
+  animateNav(isHovered) {
+    switch (isHovered) {
+      case true:
+        TweenMax.to('.circle__inner', 0.2, {
+          ease: Power0.easeOut,
+          rotation: 0,
+        });
+        break;
+      case false:
+        TweenMax.to('.circle__inner--left', 0.2, {
+          ease: Power0.easeOut,
+          delay: 0.25,
+          rotation: 45,
+        });
+        TweenMax.to('.circle__inner--right', 0.2, {
+          delay: 0.25,
+          ease: Power0.easeOut,
+          rotation: -45,
+        });
+        break;
+    }
+  }
+
   render() {
     // Disable scrolling when navigation is open
     if (this.state.navIsOpen) {
@@ -168,12 +144,24 @@ class Header extends React.Component {
                 )}
               </li>
               <li>
-                <Link to="/contact" className="header__nav-link">
+                <Link
+                  to="/contact"
+                  className="header__nav-link"
+                  onClick={() =>
+                    this.setState({ navIsOpen: false, isHovered: false })
+                  }
+                >
                   <span>Contact</span>
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="header__nav-link">
+                <Link
+                  to="/about"
+                  className="header__nav-link"
+                  onClick={() =>
+                    this.setState({ navIsOpen: false, isHovered: false })
+                  }
+                >
                   <span>About</span>
                 </Link>
               </li>
