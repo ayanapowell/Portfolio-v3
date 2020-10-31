@@ -5,7 +5,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const projectTemplate = path.resolve('src/templates/Project.js');
-    const workPageTemplate = path.resolve('src/pages/Work.js');
+
     resolve(
       graphql(`
         {
@@ -23,7 +23,6 @@ exports.createPages = ({ graphql, actions }) => {
         if (result.errors) {
           reject(result.errors);
         }
-
         result.data.allContentfulWork.edges.forEach(project => {
           createPage({
             path: `work/${project.node.slug}`,

@@ -58,7 +58,7 @@ const ImageRowEl = styled.div`
     right: 0;
     display: flex;
     align-items: flex-end;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.2);
     transition: 0.3s ease background;
     h2 {
       color: #ababab;
