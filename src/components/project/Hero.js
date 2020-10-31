@@ -44,17 +44,19 @@ const HeroEl = styled.div`
 const Hero = props => {
   return (
     <>
-      <HeroEl>
+      <HeroEl className="hero">
         <Container>{props.title}</Container>
-        <div className="project__hero-image">
-          <div className="container">
-            <div className="row">
-              <div className="offset-sm-2 inner">
-                <img src={props.image} alt="" />
+        {props.image !== '' ? (
+          <div className="project__hero-image">
+            <div className="container">
+              <div className="row">
+                <div className="offset-sm-2 inner">
+                  <img src={props.image} alt="" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        ) : ''}
       </HeroEl>
     </>
   );

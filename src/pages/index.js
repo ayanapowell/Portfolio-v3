@@ -1,4 +1,5 @@
 import React from 'react';
+import { Router } from "@reach/router"
 import styled from '@emotion/styled';
 import vars from '../utils/emotionVars';
 import { graphql } from 'gatsby';

@@ -36,14 +36,14 @@ const ProjectDetail = props => {
           <img src={props.detailImage} alt="" />
         </div>
         <div className="offset-sm-1 col-sm-3">
-          {/* <ul>
+          <ul>
             {props.detailList.map((item, index) => (
               <li key={`detail-item-${index}`}>
                 <div className="divider" />
                 {item}
               </li>
             ))}
-          </ul> */}
+          </ul>
         </div>
       </ProjectDetailEl>
     </div>
