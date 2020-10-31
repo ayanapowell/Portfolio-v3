@@ -26,8 +26,8 @@ const Video = props => {
             <div className="video__wrapper offset-sm-1">
               <video autoPlay muted loop playsInline className="video">
                 <source
-                  src={props.video.file.url}
-                  type={props.video.file.contentType}
+                  src={props.video ? props.video.file.url : ''}
+                  type={props.video ? props.video.file.contentType : ''}
                 />
               </video>
             </div>

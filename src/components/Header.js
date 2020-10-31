@@ -126,7 +126,6 @@ class Header extends React.Component {
             className="circle"
             onMouseEnter={this.handleHover}
             onMouseLeave={this.handleHover}
-            onClick={this.toggleMenu}
           >
             <span className="circle__inner circle__inner--left"></span>
             <span className="circle__inner  circle__inner--right"></span>

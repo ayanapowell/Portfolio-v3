@@ -95,7 +95,7 @@ class Project extends Component {
           {/* ===== Project detail section ===== */}
           <Container>
             <ProjectDetail
-              detailImage={detailImage.file.url}
+              detailImage={detailImage ? detailImage.file.url : ''}
               detailList={siteDetailList}
             />
           </Container>
@@ -112,7 +112,7 @@ class Project extends Component {
         {/* ===== Device detail section ===== */}
         <div className="bg-tertiary">
           <Container>
-            <DeviceDetail image={tabletmobileImage[0].file.url} />
+            <DeviceDetail image={tabletmobileImage ? tabletmobileImage[0].file.url : ''} />
           </Container>
         </div>
 
