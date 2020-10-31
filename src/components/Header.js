@@ -67,7 +67,6 @@ class Header extends React.Component {
     this.animateHome = this.animateHome.bind(this);
   }
   componentDidUpdate() {
-    console.log(this.state);
     if (this.state.navIsOpen) {
       this.animateNav(this.state.isHovered);
     } else {
@@ -83,7 +82,6 @@ class Header extends React.Component {
   }
 
   animateHome(isHovered) {
-    console.log(isHovered);
     TweenMax.to('.circle__inner', 0.2, {
       ease: Power0.easeOut,
       rotation: isHovered ? 90 : 0,
@@ -128,6 +126,7 @@ class Header extends React.Component {
             className="circle"
             onMouseEnter={this.handleHover}
             onMouseLeave={this.handleHover}
+            onClick={this.toggleMenu}
           >
             <span className="circle__inner circle__inner--left"></span>
             <span className="circle__inner  circle__inner--right"></span>
