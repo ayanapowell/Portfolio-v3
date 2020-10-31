@@ -80,7 +80,6 @@ class Header extends React.Component {
   handleHover() {
     this.setState({ isHovered: !this.state.isHovered });
   }
-
   animateHome(isHovered) {
     TweenMax.to('.circle__inner', 0.2, {
       ease: Power0.easeOut,
@@ -109,7 +108,6 @@ class Header extends React.Component {
         break;
     }
   }
-
   render() {
     // Disable scrolling when navigation is open
     if (this.state.navIsOpen) {

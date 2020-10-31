@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header';
+import HeaderNew from './HeaderNew';
 import styled from '@emotion/styled';
 
 const LayoutEl = styled.div`
@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <LayoutEl className={`layout--${modifier}`}>
-        <Header modifier="header" />
+        <HeaderNew modifier="header" />
         {children}
       </LayoutEl>
     </>
