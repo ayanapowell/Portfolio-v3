@@ -28,7 +28,7 @@
     "gsap": "^2.0.2",
     "jquery": "^3.3.1",
     "lodash": "^4.17.4",
-    "node-sass": "^4.10.0",
+    "node-sass": "^7.0.0",
     "popper.js": "^1.14.4",
     "react": "^16.6.3",
     "react-div-100vh": "^0.3.4",
